@@ -10,11 +10,11 @@ RUN echo $evn_name
 #FROM mcr.microsoft.com/dotnet/core/sdk:2.2-stretch AS build
 WORKDIR /src
 RUN ls
-COPY "TestPoint.sln" "./TestPoint"
-COPY "TestPoint/NuGet.config" "./TestPoint"
+COPY "TestPoint.sln" "./TestPoint/TestPoint.sln"
+COPY "TestPoint/NuGet.config" "./TestPoint/NuGet.config"
 
 
-RUN dotnet restore "TestPoint/TestPoint.sln" --configfile "NuGet.config"
+RUN dotnet restore "./TestPoint/TestPoint.sln" --configfile "./TestPoint/NuGet.config"
 
 COPY . "./TestPoint"
 WORKDIR "/src/TestPoint"
