@@ -8,9 +8,9 @@ FROM microsoft/dotnet:2.2-sdk AS build
 WORKDIR /src
 COPY TestPoint/TestPoint.csproj TestPoint/
 COPY TestPoint/NuGet.config /TestPoint
-
+RUN ls
 RUN ls /TestPoint
-RUN dotnet restore "TestPoint/TestPoint.csproj" --configfile TestPoint/NuGet.config
+RUN dotnet restore "TestPoint.csproj" --configfile NuGet.config
 
 COPY . "TestPoint"
 WORKDIR "/src/TestPoint"
