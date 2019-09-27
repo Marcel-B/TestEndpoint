@@ -1,4 +1,4 @@
-﻿@NonCPS
+@NonCPS
 def showChangeLogs() {
  def changeLogSets = currentBuild.changeSets
  def foo = ""
