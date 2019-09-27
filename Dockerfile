@@ -11,7 +11,7 @@ RUN echo $evn_name
 WORKDIR /src
 RUN ls
 COPY "TestPoint.csproj" "./TestPoint/TestPoint.csproj"
-COPY "TestPoint/NuGet.config" "./TestPoint/NuGet.config"
+COPY "NuGet.config" "./TestPoint/NuGet.config"
 
 
 RUN dotnet restore "./TestPoint/TestPoint.csproj" --configfile "./TestPoint/NuGet.config"
