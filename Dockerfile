@@ -1,6 +1,6 @@
 ﻿FROM microsoft/dotnet:2.2-aspnetcore-runtime AS base
-ARG FOO
-ENV env_name=$FOO
+ARG var_name 
+ENV env_var_name =$var_name
 WORKDIR /app
 EXPOSE 8045
 
