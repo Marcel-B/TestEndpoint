@@ -9,7 +9,7 @@ WORKDIR /src
 COPY TestPoint/TestPoint.csproj TestPoint/
 COPY TestPoint/NuGet.config /TestPoint
 
-RUN dotnet restore "TestPoint/TestPoint.csproj" --configfile NuGet.config
+RUN dotnet restore "TestPoint/TestPoint.csproj" --configfile TestPoint/NuGet.config
 
 COPY . "TestPoint"
 WORKDIR "/src/TestPoint"
