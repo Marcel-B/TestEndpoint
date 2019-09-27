@@ -88,9 +88,9 @@ node ('marcelbenders.de') {
      if(env.BRANCH_NAME == 'master'){
          stage('containerize'){
             mvnHome = env.BUILD_NUMBER
-            sh "docker build -t docker.qaybe.de/TestPoint:1.0.${mvnHome} ."
+            sh "docker build -t docker.qaybe.de/testpoint:1.0.${mvnHome} ."
             withDockerRegistry(credentialsId: 'DockerRegistry', toolName: 'QaybeDocker', url: 'https://docker.qaybe.de') {
-                 sh "docker push docker.qaybe.de/TestPoint:1.0.${mvnHome}"
+                 sh "docker push docker.qaybe.de/testpoint:1.0.${mvnHome}"
             }
         }
      }   
