@@ -6,8 +6,9 @@ FROM microsoft/dotnet:2.2-sdk AS build
 
 #FROM mcr.microsoft.com/dotnet/core/sdk:2.2-stretch AS build
 WORKDIR /src
-COPY TestPoint/TestPoint.csproj TestPoint/
-COPY TestPoint/NuGet.config /TestPoint
+RUN ls
+COPY "TestPoint/TestPoint.csproj" "TestPoint/"
+COPY "TestPoint/NuGet.config" "/TestPoint/NuGet.config"
 RUN ls
 RUN ls TestPoint/
 RUN dotnet restore "TestPoint/TestPoint.csproj" --configfile "TestPoint/NuGet.config"
