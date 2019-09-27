@@ -89,6 +89,7 @@ node ('marcelbenders.de') {
 	 withCredentials([string(credentialsId: 'NexusNuGetToken', variable: 'token')]) {
          stage('containerize'){
             mvnHome = env.BUILD_NUMBER
+			sh "echo ${token}"
             sh "docker build --build-arg FOO=${token} -t docker.qaybe.de/testpoint:1.0.${mvnHome} ."
             withDockerRegistry(credentialsId: 'DockerRegistry', toolName: 'QaybeDocker', url: 'https://docker.qaybe.de') {
                  sh "docker push docker.qaybe.de/testpoint:1.0.${mvnHome}"
