@@ -1,4 +1,6 @@
 ﻿FROM microsoft/dotnet:2.2-aspnetcore-runtime AS base
+ARG FOO
+ENV env_name=$FOO
 WORKDIR /app
 EXPOSE 8045
 
@@ -8,9 +10,8 @@ FROM microsoft/dotnet:2.2-sdk AS build
 WORKDIR /src
 RUN ls
 COPY "TestPoint/TestPoint.csproj" "TestPoint/"
-COPY "TestPoint/NuGet.config" "TestPoint/NuGet.config"
-RUN ls
-RUN ls TestPoint/
+COPY "TestPoint/NuGet.config" "TestPoint/NuGet.config"RUN ls TestPoint/
+
 RUN dotnet restore "TestPoint/TestPoint.csproj" --configfile "TestPoint/NuGet.config"
 
 COPY . "TestPoint"
