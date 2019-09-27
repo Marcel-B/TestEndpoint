@@ -36,6 +36,7 @@ node ('marcelbenders.de') {
  if(env.BRANCH_NAME != 'master' && env.BRANCH_NAME != 'dev' )
      return 
  stage('preparation') { 
+     cleanWs()
      checkout scm
      commitId = sh(returnStdout: true, script: 'git rev-parse HEAD')
  }
