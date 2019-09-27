@@ -22,8 +22,10 @@ WORKDIR "/src/TestPoint"
 
 RUN dotnet clean TestPoint.csproj
 
+RUN ls
+
 RUN rm -R obj
-run rm -R bin
+RUN rm -R bin
 
 RUN dotnet restore "TestPoint.csproj" --configfile "NuGet.config"
 
