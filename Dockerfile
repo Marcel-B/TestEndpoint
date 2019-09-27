@@ -15,12 +15,18 @@ COPY "TestPoint/NuGet.config" "TestPoint/NuGet.config"
 
 RUN ls TestPoint/
 
-RUN dotnet restore "TestPoint/TestPoint.csproj" --configfile "TestPoint/NuGet.config"
 
 COPY . "TestPoint"
 WORKDIR "/src/TestPoint"
 
+
 RUN dotnet clean TestPoint.csproj
+
+RUN rm -R obj
+run rm -R bin
+
+RUN dotnet restore "TestPoint.csproj" --configfile "NuGet.config"
+
 RUN dotnet build "TestPoint.csproj" -c Release -o /app
 
 FROM build AS publish
