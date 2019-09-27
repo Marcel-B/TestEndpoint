@@ -10,28 +10,28 @@ RUN echo $evn_name
 #FROM mcr.microsoft.com/dotnet/core/sdk:2.2-stretch AS build
 WORKDIR /src
 RUN ls
-COPY "TestPoint/TestPoint.csproj" "TestPoint/"
-COPY "TestPoint/NuGet.config" "TestPoint/NuGet.config"
+COPY "TestPoint.sln" .
+COPY "TestPoint/NuGet.config" .
 
 RUN ls TestPoint/
 
+RUN dotnet restore "TestPoint/TestPoint.sln" --configfile "NuGet.config"
 
 COPY . "TestPoint"
 WORKDIR "/src/TestPoint"
 
 
-RUN dotnet clean TestPoint.csproj
+RUN dotnet clean TestPoint.sln
 
 RUN ls
 
 RUN rm -R obj
 
-RUN dotnet restore "TestPoint.csproj" --configfile "NuGet.config"
 
-RUN dotnet build "TestPoint.csproj" -c Release -o /app
+RUN dotnet build "TestPoint.sln" -c Release -o /app
 
 FROM build AS publish
-RUN dotnet publish "TestPoint.csproj" -c Release -o /app
+RUN dotnet publish "TestPoint.sln" -c Release -o /app
 
 FROM base AS final
 WORKDIR /app
