@@ -20,7 +20,7 @@ RUN dotnet restore "TestPoint/TestPoint.csproj" --configfile "TestPoint/NuGet.co
 COPY . "TestPoint"
 WORKDIR "/src/TestPoint"
 
-RUN dotnet clean
+RUN dotnet clean TestPoint.csproj
 RUN dotnet build "TestPoint.csproj" -c Release -o /app
 
 FROM build AS publish
