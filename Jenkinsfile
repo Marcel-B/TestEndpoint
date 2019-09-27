@@ -42,7 +42,7 @@ node ('marcelbenders.de') {
 
  try{
      stage('restore') {
-         sh 'dotnet restore --configfile TestPoint/NuGet.config'
+         sh 'dotnet restore --configfile TestPoint/NuGet.config' 
      }
  }catch(Exception ex){
      sendMail("RESULT: ${currentBuild.result}")
