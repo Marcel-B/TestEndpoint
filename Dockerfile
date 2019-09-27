@@ -8,7 +8,7 @@ FROM microsoft/dotnet:2.2-sdk AS build
 WORKDIR /src
 RUN ls
 COPY "TestPoint/TestPoint.csproj" "TestPoint/"
-COPY "TestPoint/NuGet.config" "/TestPoint/NuGet.config"
+COPY "TestPoint/NuGet.config" "TestPoint/NuGet.config"
 RUN ls
 RUN ls TestPoint/
 RUN dotnet restore "TestPoint/TestPoint.csproj" --configfile "TestPoint/NuGet.config"
