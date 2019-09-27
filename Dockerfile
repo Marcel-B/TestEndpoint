@@ -6,6 +6,7 @@ EXPOSE 8045
 
 FROM microsoft/dotnet:2.2-sdk AS build
 
+RUN echo $evn_name
 #FROM mcr.microsoft.com/dotnet/core/sdk:2.2-stretch AS build
 WORKDIR /src
 RUN ls
