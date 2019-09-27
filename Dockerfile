@@ -25,7 +25,6 @@ RUN dotnet clean TestPoint.csproj
 RUN ls
 
 RUN rm -R obj
-RUN rm -R bin
 
 RUN dotnet restore "TestPoint.csproj" --configfile "NuGet.config"
 
