@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 
 namespace TestEndpoint.Controllers
 {
@@ -10,6 +12,13 @@ namespace TestEndpoint.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
+        private readonly ILogger<ValuesController> _logger;
+        public ValuesController(
+            ILogger<ValuesController> logger)
+        {
+            _logger = logger;
+        }
+
         // GET api/values
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
@@ -26,8 +35,14 @@ namespace TestEndpoint.Controllers
 
         // POST api/values
         [HttpPost]
-        public void Post([FromBody] string value)
+        public async Task Post()
         {
+            var content = string.Empty;
+            using (var bodyStream = new StreamReader(Request.Body))
+            {
+                content = await bodyStream.ReadToEndAsync();
+            }
+            _logger.LogError(8899, $"Request:\r\n--------\r\n{content}\r\n--------");
         }
 
         // PUT api/values/5
