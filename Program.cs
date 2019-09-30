@@ -35,7 +35,7 @@ namespace TestEndpoint
                     logging.ClearProviders();
                     logging.SetMinimumLevel(LogLevel.Trace);
                 })
-                .UseUrls("http://*:5042")
+                .UseUrls("http://*:8045")
                 .UseNLog();
     }
 }
