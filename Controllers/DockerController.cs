@@ -27,7 +27,7 @@ namespace TestPoint.Controllers
             var dt = dockerRequest.PushData.PushedAt.ToDateTime();
             sb.AppendLine($"Docker push from {dockerRequest.PushData.Pusher} | {dt}");
             sb.Append($"{dockerRequest.Repository.RepoName}:{dockerRequest.PushData.Tag}");
-            _logger.LogError(1212, $"{sb.ToString()}");
+            _logger.LogInformation(1212, $"{sb.ToString()}");
             return Ok();
         }
     }

@@ -1,10 +1,10 @@
-﻿FROM microsoft/dotnet:2.2-aspnetcore-runtime AS base
+﻿FROM mcr.microsoft.com/dotnet/core/aspnet:3.0 AS base
 ARG var_name 
 ENV env_var_name =$var_name
 WORKDIR /app
 EXPOSE 8045
 
-FROM microsoft/dotnet:2.2-sdk AS build
+FROM mcr.microsoft.com/dotnet/core/sdk:3.0 AS build
 
 RUN echo $evn_name
 

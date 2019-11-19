@@ -28,7 +28,7 @@ namespace TestPoint.Controllers
             {
                 content = await bodyStream.ReadToEndAsync();
             }
-            _logger.LogError(8899, $"Notification Request:\r\n--------\r\n{content}\r\n--------");
+            _logger.LogInformation(1212, $"Notification Request:\r\n--------\r\n{content}\r\n--------");
         }
     }
 }
