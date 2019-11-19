@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using NLog.Web;
 
@@ -14,7 +15,7 @@ namespace TestEndpoint
             var logger = NLogBuilder.ConfigureNLog(file).GetCurrentClassLogger();
             try
             {
-                CreateWebHostBuilder(args).Build().Run();
+                CreateHostBuilder(args).Build().Run();
             }
             catch (Exception ex)
             {
@@ -27,15 +28,18 @@ namespace TestEndpoint
             }
         }
 
-        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
-            WebHost.CreateDefaultBuilder(args)
-                .UseStartup<Startup>()
-                .ConfigureLogging((hostingContext, logging) =>
+        public static IHostBuilder CreateHostBuilder(string[] args) =>
+            Host.CreateDefaultBuilder(args)
+           .ConfigureLogging(logging =>
+           {
+               logging.ClearProviders();
+               logging.AddConsole();
+               logging.SetMinimumLevel(LogLevel.Trace);
+           })
+                .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    logging.ClearProviders();
-                    logging.SetMinimumLevel(LogLevel.Trace);
+                    webBuilder.UseStartup<Startup>();
                 })
-                .UseUrls("http://*:8045")
                 .UseNLog();
     }
 }
