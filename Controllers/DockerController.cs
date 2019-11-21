@@ -54,9 +54,11 @@ namespace TestPoint.Controllers
             if (old != null)
             {
                 dockerImage.Id = old.Id;
-                dockerImage.Updated = DateTime.Now;
-                dockerImage.Pusher = dockerRequest.PushData.Pusher;
-                _ = _rep.DockerImage.Update(dockerImage);
+                old.Updated = DateTime.Now;
+                old.Pusher = dockerRequest.PushData.Pusher;
+                old.Tag = dockerRequest.PushData.Tag;
+                old.TimeHash = DateTime.Now.GetHashCode().ToString();
+                _ = _rep.DockerImage.Update(old);
             }
             else
             {
