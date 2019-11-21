@@ -23,7 +23,6 @@ namespace TestEndpoint
         {
             services.AddScoped<IDockerImageRepository, DockerImageRepository>();
             services.AddScoped<IRepositoryWrapper, RepositoryWrapper>();
-
             services.AddControllers();
         }
 
@@ -35,6 +34,7 @@ namespace TestEndpoint
             {
                 app.UseDeveloperExceptionPage();
             }
+            UpdateDatabase(app);
             app.UseRouting();
             app.UseAuthorization();
             app.UseEndpoints(endpoints =>

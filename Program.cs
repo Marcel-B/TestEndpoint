@@ -40,10 +40,12 @@ namespace TestEndpoint
                })
                 .ConfigureServices(services =>
                 {
-                    var conString = System.Environment.GetEnvironmentVariable("CON_STR");
+                    var pw = Environment.GetEnvironmentVariable("CON_STR");
 #if DEBUG
-                    conString = "Server=localhost,1433;Database=DockerImage;User Id=sa;Password=foo123bar!";
+                    pw = "foo123bar!";
 #endif
+                    var conString = $"Server=sqlserver,1433;Database=DockerImage;User Id=sa;Password={pw}";
+
                     services.AddDbContext<ImageContext>(options =>
                     {
                         options.UseSqlServer(conString);
