@@ -45,7 +45,8 @@ namespace TestPoint.Controllers
                 RepoName = dockerRequest.Repository.RepoName,
                 RepoUrl = dockerRequest.Repository.RepoUrl,
                 Tag = dockerRequest.PushData.Tag,
-                Updated = DateTime.Now
+                Updated = DateTime.Now,
+                TimeHash = DateTime.Now.GetHashCode().ToString()
             };
 
             var old = await _rep.DockerImage.SelectByImageAsync(dockerRequest.Repository.RepoName, dockerRequest.PushData.Tag);

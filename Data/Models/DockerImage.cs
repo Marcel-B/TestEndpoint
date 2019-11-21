@@ -9,5 +9,6 @@
         public string Owner { get; set; }
         public string RepoName { get; set; }
         public string RepoUrl { get; set; }
+        public string TimeHash { get; set; }
     }
 }
