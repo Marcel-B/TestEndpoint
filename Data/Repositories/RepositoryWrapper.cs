@@ -11,9 +11,11 @@ namespace TestPoint.Data.Repositories
 
         public RepositoryWrapper(
             ImageContext db,
+            IDockerImageRepository dockerImage,
             ILogger<RepositoryWrapper> logger)
         {
             _logger = logger;
+            DockerImage = dockerImage;
             Db = db;
         }
     }
