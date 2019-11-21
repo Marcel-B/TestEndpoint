@@ -45,6 +45,7 @@ namespace TestPoint.Data.Repositories
             T entity)
         {
             var result = Db.Set<T>().Update(entity);
+            _ = Db.SaveChanges();
             return result.Entity;
         }
     }
