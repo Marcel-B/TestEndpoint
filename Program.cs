@@ -1,8 +1,11 @@
 ﻿using System;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using NLog.Web;
+using TestPoint.Data;
 
 namespace TestEndpoint
 {
@@ -29,12 +32,23 @@ namespace TestEndpoint
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
-           .ConfigureLogging(logging =>
-           {
-               logging.ClearProviders();
-               logging.AddConsole();
-               logging.SetMinimumLevel(LogLevel.Trace);
-           })
+               .ConfigureLogging(logging =>
+               {
+                   logging.ClearProviders();
+                   logging.AddConsole();
+                   logging.SetMinimumLevel(LogLevel.Trace);
+               })
+                .ConfigureServices(services =>
+                {
+                    var conString = System.Environment.GetEnvironmentVariable("CON_STR");
+#if DEBUG
+                    conString = "Server=localhost,1433;Database=DockerImage;User Id=sa;Password=foo123bar!";
+#endif
+                    services.AddDbContext<ImageContext>(options =>
+                    {
+                        options.UseSqlServer(conString);
+                    });
+                })
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();

@@ -1,8 +1,11 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using TestPoint.Data;
+using TestPoint.Data.Repositories;
 
 namespace TestEndpoint
 {
@@ -18,6 +21,9 @@ namespace TestEndpoint
         public void ConfigureServices(
             IServiceCollection services)
         {
+            services.AddScoped<IDockerImageRepository, DockerImageRepository>();
+            services.AddScoped<IRepositoryWrapper, RepositoryWrapper>();
+
             services.AddControllers();
         }
 
@@ -35,6 +41,16 @@ namespace TestEndpoint
             {
                 endpoints.MapControllers();
             });
+        }
+
+        private static void UpdateDatabase(
+            IApplicationBuilder app)
+        {
+            using var serviceScope = app.ApplicationServices
+                .GetRequiredService<IServiceScopeFactory>()
+                .CreateScope();
+            using var context = serviceScope.ServiceProvider.GetService<ImageContext>();
+            context.Database.Migrate();
         }
     }
 }
