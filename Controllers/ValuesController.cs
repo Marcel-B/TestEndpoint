@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -42,7 +40,7 @@ namespace TestEndpoint.Controllers
             {
                 content = await bodyStream.ReadToEndAsync();
             }
-            _logger.LogError(8899, $"Request:\r\n--------\r\n{content}\r\n--------");
+            _logger.LogInformation(1212, $"Values Request:\r\n--------\r\n{content}\r\n--------");
         }
 
         // PUT api/values/5
