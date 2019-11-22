@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Prometheus;
 using TestPoint.Data;
 using TestPoint.Data.Repositories;
 
@@ -35,6 +36,18 @@ namespace TestEndpoint
             {
                 app.UseDeveloperExceptionPage();
             }
+            app.UseMetricServer();
+            app.UseHttpMetrics(options =>
+            {
+                options.RequestCount.Enabled = false;
+
+                options.RequestDuration.Histogram = Metrics.CreateHistogram("myapp_http_request_duration_seconds", "Some help text",
+                    new HistogramConfiguration
+                    {
+                        Buckets = Histogram.LinearBuckets(start: 1, width: 1, count: 64),
+                        LabelNames = new[] { "code", "method" }
+                    });
+            });
             UpdateDatabase(app);
             app.UseRouting();
             app.UseAuthorization();
