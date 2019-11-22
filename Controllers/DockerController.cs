@@ -49,7 +49,7 @@ namespace TestPoint.Controllers
                     RepoUrl = dockerRequest.Repository.RepoUrl,
                     Tag = dockerRequest.PushData.Tag,
                     Updated = DateTime.Now,
-                    TimeHash = DateTime.Now.GetHashCode().ToString()
+                    TimeHash = Guid.NewGuid().ToString()
                 };
 
                 var old = await _rep.DockerImage.SelectByImageAsync(dockerRequest.Repository.RepoName, dockerRequest.PushData.Tag);
@@ -60,7 +60,7 @@ namespace TestPoint.Controllers
                     old.Updated = DateTime.Now;
                     old.Pusher = dockerRequest.PushData.Pusher;
                     old.Tag = dockerRequest.PushData.Tag;
-                    old.TimeHash = DateTime.Now.GetHashCode().ToString();
+                    old.TimeHash = Guid.NewGuid().ToString();
                     _ = _rep.DockerImage.Update(old);
                 }
                 else
