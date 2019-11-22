@@ -22,6 +22,8 @@ namespace TestPoint.Data
         {
             if (modelBuilder == null)
                 throw new ArgumentNullException(nameof(modelBuilder));
+            modelBuilder.Entity<DockerImage>().HasIndex(b => b.RepoName);
+            modelBuilder.Entity<DockerImage>().HasIndex(b => b.Tag);
             modelBuilder.Seed();
         }
     }
