@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Prometheus;
 
 namespace TestPoint.Controllers
 {
@@ -19,12 +20,15 @@ namespace TestPoint.Controllers
         [HttpPost]
         public async Task Post()
         {
-            var content = string.Empty;
-            using (var bodyStream = new StreamReader(Request.Body))
+            using (Metrics.CreateHistogram("testpoint_POST_notification_duration_seconds", "").NewTimer())
             {
-                content = await bodyStream.ReadToEndAsync();
+                var content = string.Empty;
+                using (var bodyStream = new StreamReader(Request.Body))
+                {
+                    content = await bodyStream.ReadToEndAsync();
+                }
+                _logger.LogInformation(1212, $"Notification Request:\r\n--------\r\n{content}\r\n--------");
             }
-            _logger.LogInformation(1212, $"Notification Request:\r\n--------\r\n{content}\r\n--------");
         }
     }
 }
