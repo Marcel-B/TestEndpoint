@@ -19,6 +19,13 @@ namespace TestEndpoint
             var stage = Environment.GetEnvironmentVariable("NETCORE_ENVIRONMENT");
             try
             {
+                if (stage != "Development")
+                {
+                    var metricServer = new MetricPusher(
+                        endpoint: "https://push.qaybe.de/metrics",
+                        job: "testpoint");
+                    metricServer.Start();
+                }
                 CreateHostBuilder(args).Build().Run();
             }
             catch (Exception ex)
@@ -30,20 +37,6 @@ namespace TestEndpoint
             {
                 NLog.LogManager.Shutdown();
             }
-            try
-            {
-                if (stage != "Development")
-                {
-                    var metricServer = new MetricPusher(
-                        endpoint: "https://push.qaybe.de/metrics",
-                        job: "testpoint");
-                    metricServer.Start();
-                }
-            }catch(Exception e)
-            {
-                logger.LogException(NLog.LogLevel.Error, "Error occurred while starting MetricPusher", e);
-            }
-       
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
