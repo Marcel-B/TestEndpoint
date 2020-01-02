@@ -5,7 +5,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using NLog.Web;
-using Prometheus;
 using TestPoint.Data;
 
 namespace TestEndpoint
@@ -16,16 +15,8 @@ namespace TestEndpoint
         {
             var file = "nlog.config";
             var logger = NLogBuilder.ConfigureNLog(file).GetCurrentClassLogger();
-            var stage = Environment.GetEnvironmentVariable("NETCORE_ENVIRONMENT");
             try
             {
-                if (stage != "Development")
-                {
-                    var metricServer = new MetricPusher(
-                        endpoint: "https://push.qaybe.de/metrics",
-                        job: "testpoint");
-                    metricServer.Start();
-                }
                 CreateHostBuilder(args).Build().Run();
             }
             catch (Exception ex)

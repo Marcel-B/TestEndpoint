@@ -2,7 +2,7 @@
 ARG var_name 
 ENV env_var_name =$var_name
 WORKDIR /app
-EXPOSE 5042
+EXPOSE 80
 
 FROM mcr.microsoft.com/dotnet/core/sdk:3.0 AS build
 
