@@ -1,4 +1,5 @@
-﻿using System;
+﻿using com.b_velop.TestPoint.Data;
+using com.b_velop.TestPoint.Data.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
@@ -7,10 +8,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Prometheus;
-using TestPoint.Data;
-using TestPoint.Data.Repositories;
 
-namespace TestEndpoint
+namespace com.b_velop.TestEndpoint
 {
     public class Startup
     {

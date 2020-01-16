@@ -3,6 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
+    <RootNamespace>com.b_velop.TestPoint</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

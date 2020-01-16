@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Text.Json.Serialization;
 
-namespace TestPoint.Models
+namespace com.b_velop.TestPoint.Models
 {
     public class PushData
     {

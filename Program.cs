@@ -1,4 +1,5 @@
 ﻿using System;
+using com.b_velop.TestPoint.Data;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -7,7 +8,7 @@ using Microsoft.Extensions.Logging;
 using NLog.Web;
 using TestPoint.Data;
 
-namespace TestEndpoint
+namespace com.b_velop.TestEndpoint
 {
     public class Program
     {

@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace TestPoint.Extensions
+namespace com.b_velop.TestPoint.Extensions
 {
     public static class ModelBuilderExtensions
     {

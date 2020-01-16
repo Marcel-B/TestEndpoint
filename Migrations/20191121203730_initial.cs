@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace TestPoint.Migrations
+namespace com.b_velop.TestPoint.Migrations
 {
     public partial class initial : Migration
     {
