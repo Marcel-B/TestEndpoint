@@ -28,7 +28,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="ClientApp\src\" />
     <Folder Include="Data\" />
     <Folder Include="Data\Models\" />
     <Folder Include="Data\Repositories\" />

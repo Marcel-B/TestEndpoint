@@ -42,10 +42,12 @@ namespace com.b_velop.TestEndpoint
                 .ConfigureServices(services =>
                 {
                     var pw = Environment.GetEnvironmentVariable("CON_STR");
+                    var server = "sqlserver";
 #if DEBUG
                     pw = "foo123bar!";
+                    server = "localhost";
 #endif
-                    var conString = $"Server=sqlserver,1433;Database=DockerImage;User Id=sa;Password={pw}";
+                    var conString = $"Server={server},1433;Database=DockerImage;User Id=sa;Password={pw}";
 
                     services.AddDbContext<ImageContext>(options =>
                     {
