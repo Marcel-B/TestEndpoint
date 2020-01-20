@@ -1,4 +1,4 @@
-﻿using com.b_velop.TestPoint.Data;
+using com.b_velop.TestPoint.Data;
 using com.b_velop.TestPoint.Data.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
