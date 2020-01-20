@@ -7,7 +7,6 @@ namespace com.b_velop.TestPoint.Extensions
         public static void Seed(
             this ModelBuilder modelBuilder)
         {
-
         }
     }
 }
