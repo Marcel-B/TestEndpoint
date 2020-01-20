@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using TestPoint.Data.Models;
 
-namespace TestPoint.Data.Repositories
+namespace com.b_velop.TestPoint.Data.Repositories
 {
     public abstract class RepositoryBase<T> : IRepositoryBase<T> where T : class, IEntity
     {

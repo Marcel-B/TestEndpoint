@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace TestPoint.Extensions
+namespace com.b_velop.TestPoint.Extensions
 {
     public static class DateTimeExtensions
     {

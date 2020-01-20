@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 
-namespace TestPoint.Data.Repositories
+namespace com.b_velop.TestPoint.Data.Repositories
 {
     public class RepositoryWrapper : IRepositoryWrapper
     {

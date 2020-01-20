@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using TestPoint.Data.Models;
 
-namespace TestPoint.Data.Repositories
+namespace com.b_velop.TestPoint.Data.Repositories
 {
     public interface IRepositoryBase<T> where T : class, IEntity
     {

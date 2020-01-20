@@ -1,4 +1,5 @@
 ﻿using System;
+using com.b_velop.TestPoint.Data;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -7,7 +8,7 @@ using Microsoft.Extensions.Logging;
 using NLog.Web;
 using TestPoint.Data;
 
-namespace TestEndpoint
+namespace com.b_velop.TestEndpoint
 {
     public class Program
     {
@@ -41,10 +42,12 @@ namespace TestEndpoint
                 .ConfigureServices(services =>
                 {
                     var pw = Environment.GetEnvironmentVariable("CON_STR");
+                    var server = "sqlserver";
 #if DEBUG
                     pw = "foo123bar!";
+                    server = "localhost";
 #endif
-                    var conString = $"Server=sqlserver,1433;Database=DockerImage;User Id=sa;Password={pw}";
+                    var conString = $"Server={server},1433;Database=DockerImage;User Id=sa;Password={pw}";
 
                     services.AddDbContext<ImageContext>(options =>
                     {

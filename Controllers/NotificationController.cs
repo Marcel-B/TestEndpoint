@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Prometheus;
 
-namespace TestPoint.Controllers
+namespace com.b_velop.TestPoint.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -24,9 +24,7 @@ namespace TestPoint.Controllers
             {
                 var content = string.Empty;
                 using (var bodyStream = new StreamReader(Request.Body))
-                {
                     content = await bodyStream.ReadToEndAsync();
-                }
                 _logger.LogInformation(1212, $"Notification Request:\r\n--------\r\n{content}\r\n--------");
             }
         }

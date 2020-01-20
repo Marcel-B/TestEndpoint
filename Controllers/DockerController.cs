@@ -1,15 +1,16 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using com.b_velop.TestPoint.Data.Repositories;
+using com.b_velop.TestPoint.Extensions;
+using com.b_velop.TestPoint.Models;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Prometheus;
 using System;
+using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using TestPoint.Data.Models;
-using TestPoint.Data.Repositories;
-using TestPoint.Extensions;
-using TestPoint.Models;
 
-namespace TestPoint.Controllers
+namespace com.b_velop.TestPoint.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -68,6 +69,16 @@ namespace TestPoint.Controllers
                     _ = await _rep.DockerImage.InsertAsync(dockerImage);
                 }
                 return Ok();
+            }
+        }
+
+        [HttpGet]
+        public async Task<IEnumerable<DockerImage>> GetDockerImageAsync()
+        {
+            using (Metrics.CreateHistogram("testpoint_GET_docker_duration_seconds", "").NewTimer())
+            {
+                var result = await _rep.DockerImage.SelectAllAsync();
+                return result;
             }
         }
 
