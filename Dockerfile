@@ -30,7 +30,6 @@ RUN dotnet restore "./TestPoint/TestPoint.csproj" --configfile "./TestPoint/NuGe
 COPY . "./TestPoint"
 WORKDIR "/src/TestPoint"
 
-
 RUN dotnet build "TestPoint.csproj" -c Release -o /app
 
 FROM build AS publish

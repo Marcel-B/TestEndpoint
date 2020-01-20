@@ -25,7 +25,7 @@ namespace com.b_velop.TestEndpoint
         {
             services.AddScoped<IDockerImageRepository, DockerImageRepository>();
             services.AddScoped<IRepositoryWrapper, RepositoryWrapper>();
-            services.AddControllers();
+            services.AddControllersWithViews();
 
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
@@ -57,11 +57,15 @@ namespace com.b_velop.TestEndpoint
             app.UseStaticFiles();
             UpdateDatabase(app);
             app.UseRouting();
-            app.UseAuthorization();
+            //app.UseAuthorization();
+
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllers();
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller}/{action=Index}/{id?}");
             });
+
             app.UseSpa(spa =>
             {
                 spa.Options.SourcePath = "ClientApp";
