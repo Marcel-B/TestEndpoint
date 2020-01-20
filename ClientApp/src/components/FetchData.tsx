@@ -45,17 +45,27 @@ class FetchData extends React.PureComponent<DockerImageProps> {
                     <tr>
                         <th>Image</th>
                         <th>Tag</th>
+                        <th>Updated</th>
                         <th>Owner</th>
                         <th>Pusher</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {this.props.dockerImages.map((forecast: DockerImagesStore.DockerImage) =>
-                        <tr key={forecast.id}>
-                            <td>{forecast.name}</td>
-                            <td>{forecast.tag}</td>
-                            <td>{forecast.owner}</td>
-                            <td>{forecast.pusher}</td>
+                    {this.props.dockerImages.map((dockerImage: DockerImagesStore.DockerImage) =>
+                        <tr key={dockerImage.id}>
+                            <td>{dockerImage.name}</td>
+                            <td>{dockerImage.tag}</td>
+                            <td> {new Intl.DateTimeFormat("de-DE", {
+                                year: "numeric",
+                                month: "2-digit",
+                                hour: 'numeric',
+                                minute: 'numeric',
+                                second: 'numeric',
+                                day: "2-digit",
+                                hour12: false,
+                            }).format(new Date(dockerImage.updated))}</td>
+                            <td>{dockerImage.owner}</td>
+                            <td>{dockerImage.pusher}</td>
                         </tr>
                     )}
                 </tbody>
@@ -66,7 +76,6 @@ class FetchData extends React.PureComponent<DockerImageProps> {
     private renderPagination() {
         const prevStartDateIndex = (this.props.startDateIndex || 0) - 5;
         const nextStartDateIndex = (this.props.startDateIndex || 0) + 5;
-
         return (
             <div className="d-flex justify-content-between">
                 <Link className='btn btn-outline-secondary btn-sm' to={`/fetch-data/${prevStartDateIndex}`}>Previous</Link>

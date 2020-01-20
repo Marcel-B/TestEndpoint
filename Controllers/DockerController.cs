@@ -6,6 +6,7 @@ using Microsoft.Extensions.Logging;
 using Prometheus;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TestPoint.Data.Models;
@@ -78,7 +79,7 @@ namespace com.b_velop.TestPoint.Controllers
             using (Metrics.CreateHistogram("testpoint_GET_docker_duration_seconds", "").NewTimer())
             {
                 var result = await _rep.DockerImage.SelectAllAsync();
-                return result;
+                return result.OrderByDescending(_ => _.Updated);
             }
         }
 
