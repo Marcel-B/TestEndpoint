@@ -50,7 +50,7 @@ export const actionCreators = {
         // Only load data if it's something we don't already have (and are not already loading)
         const appState = getState();
         if (appState && appState.dockerImages && startDateIndex !== appState.dockerImages.startDateIndex) {
-            fetch(`docker`)
+            fetch(`api/docker`)
                 .then(response => response.json() as Promise<DockerImage[]>)
                 .then(data => {
                     dispatch({ type: 'RECEIVE_DOCKER_IMAGES', startDateIndex: startDateIndex, dockerImages: data });

@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Prometheus;
 using System;
+using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using TestPoint.Data.Models;
@@ -68,6 +69,16 @@ namespace com.b_velop.TestPoint.Controllers
                     _ = await _rep.DockerImage.InsertAsync(dockerImage);
                 }
                 return Ok();
+            }
+        }
+
+        [HttpGet]
+        public async Task<IEnumerable<DockerImage>> GetDockerImageAsync()
+        {
+            using (Metrics.CreateHistogram("testpoint_GET_docker_duration_seconds", "").NewTimer())
+            {
+                var result = await _rep.DockerImage.SelectAllAsync();
+                return result;
             }
         }
 

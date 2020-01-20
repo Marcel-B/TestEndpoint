@@ -26,9 +26,8 @@ class FetchData extends React.PureComponent<DockerImageProps> {
     public render() {
         return (
             <React.Fragment>
-                <h1 id="tabelLabel">Weather forecast</h1>
-                <p>This component demonstrates fetching data from the server and working with URL parameters.</p>
-                {this.renderForecastsTable()}
+                <h1 id="tabelLabel" className="display-4">Docker Images</h1>
+                {this.renderDockerImagesTable()}
                 {this.renderPagination()}
             </React.Fragment>
         );
@@ -39,15 +38,15 @@ class FetchData extends React.PureComponent<DockerImageProps> {
         this.props.requestDockerImages(startDateIndex);
     }
 
-    private renderForecastsTable() {
+    private renderDockerImagesTable() {
         return (
             <table className='table table-striped' aria-labelledby="tabelLabel">
                 <thead>
                     <tr>
-                        <th>Date</th>
-                        <th>Temp. (C)</th>
-                        <th>Temp. (F)</th>
-                        <th>Summary</th>
+                        <th>Image</th>
+                        <th>Tag</th>
+                        <th>Owner</th>
+                        <th>Pusher</th>
                     </tr>
                 </thead>
                 <tbody>
